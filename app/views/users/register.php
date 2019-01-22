@@ -4,28 +4,39 @@
 	<div class="card" style="width: 30rem;">
 		 <div class="card-body">
 		    <h5 class="card-title">Create An Account</h5>   
-			<form action="" method=""> 
+		    <p>Please fill out this form to register with us.</p>
+			<form action="<?= URLROOT ?>/users/register" method="post">  
 				  <div class="form-group">
-					<label for="name">Name</label>
-					<input type="text" name="name" class="form-control" placeholder="Name">
+					<label for="name">Name <span class="text-danger">*</span></label> 
+					<input type="text" name="name" class="form-control <?php echo (!empty($data['name_error'])) ? 'is-invalid' : ''; ?>" placeholder="Name" value="<?= $data['name'] ?>"> 
+					 <small class="invalid-feedback"><?= $data['name_error'] ?></small>  
+				  </div>
+
+				  <div class="form-group"> 
+				    <label for="email">Email address <span class="text-danger">*</span></label>
+				    <input type="text" name="email" class="form-control <?php echo (!empty($data['email_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['email'] ?>"> 
+				    <small class="invalid-feedback"><?= $data['email_error'] ?></small>  
 				  </div>
 
 				  <div class="form-group">
-				    <label for="email">Email address</label>
-				    <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
-				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> 
+				    <label for="password">Password <span class="text-danger">*</span></label>
+				     <input type="text" name="password" class="form-control <?php echo (!empty($data['password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['password'] ?>"> 
+				    <small class="invalid-feedback"><?= $data['password_error'] ?></small>  
 				  </div>
 
 				  <div class="form-group">
-				    <label for="password">Password</label>
-				    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-				  </div>
-
-				  <div class="form-group">
-				    <label for="password">Confirm Password</label>
-				    <input type="password" name="confirm_password" class="form-control" id="password" placeholder="Confirm Password">
+				    <label for="password">Confirm Password <span class="text-danger">*</span></label>
+				    <input type="text" name="confirm_password" class="form-control <?php echo (!empty($data['confirm_password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['confirm_password'] ?>">  
+				    <small class="invalid-feedback"><?= $data['confirm_password_error'] ?></small> 
 				  </div> 
-				<button type="submit" class="btn btn-success">Save</button>  
+				  <div class="row">
+				  	<div class="col">
+						<button type="submit" class="btn btn-success btn-block">Register</button>  
+				  	</div>
+				  	<div class="col">
+				  		<a class="btn btn-light btn-block" href="<?= URLROOT ?>/users/login">Have an account? login</a>
+				  	</div>
+				  </div>
 			</form>
 		</div>
 	</div> 
