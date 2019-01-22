@@ -16,7 +16,17 @@ class Pages extends Controller
 	{   
 		$data = [
 			'title' => 'SharePosts', 
+			'description' => 'Simple social network built on the SMVC PHP Framework'
 		]; 
 		$this->view('pages/index', $data);          
 	} 
+
+	public function about()
+	{
+		$data = [
+			'title' => 'About Us',
+			'description' => 'App to share posts with others users' 
+		]; 
+		$this->view('pages/about', $data);  
+	}
 }
