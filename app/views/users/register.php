@@ -20,16 +20,16 @@
 
 				  <div class="form-group">
 				    <label for="password">Password <span class="text-danger">*</span></label>
-				     <input type="text" name="password" class="form-control <?php echo (!empty($data['password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['password'] ?>"> 
+				     <input type="password" name="password" class="form-control <?php echo (!empty($data['password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Password" value="<?= $data['password'] ?>"> 
 				    <small class="invalid-feedback"><?= $data['password_error'] ?></small>  
 				  </div>
 
 				  <div class="form-group">
 				    <label for="password">Confirm Password <span class="text-danger">*</span></label>
-				    <input type="text" name="confirm_password" class="form-control <?php echo (!empty($data['confirm_password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['confirm_password'] ?>">  
+				    <input type="password" name="confirm_password" class="form-control <?php echo (!empty($data['confirm_password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Confirm Pasword" value="<?= $data['confirm_password'] ?>">  
 				    <small class="invalid-feedback"><?= $data['confirm_password_error'] ?></small> 
 				  </div> 
-				  <div class="row">
+				  <div class="row"> 
 				  	<div class="col">
 						<button type="submit" class="btn btn-success btn-block">Register</button>  
 				  	</div>
