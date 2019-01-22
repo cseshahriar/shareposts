@@ -1,18 +1,18 @@
 <?php
 // DB Params
 define('DB_HOST', 'localhost'); 
-define('DB_USER', '_YOUR_USER'); 
-define('DB_PASS', '_USER_PASS'); 
-define('DB_NAME', '_DB_NAME');        
+define('DB_USER', 'root'); 
+define('DB_PASS', '847847'); 
+define('DB_NAME', 'shareposts');        
 
 // App Root 
 define('APPROOT' ,dirname(dirname(__FILE__)));  
 
 // URL Root 
-define('RULROOT', '_APP_URL');  
+define('RULROOT', 'http://shareposts.com');   
 
 // Site Name
-define('SITENAME', '_YOUR_SITE_NAME'); 
+define('SITENAME', 'SharePosts'); 
 
 // Default time zone
 date_default_timezone_set("Asia/Dhaka"); 
