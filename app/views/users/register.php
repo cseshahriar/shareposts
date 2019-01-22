@@ -34,7 +34,7 @@
 						<button type="submit" class="btn btn-success btn-block">Register</button>  
 				  	</div>
 				  	<div class="col">
-				  		<a class="btn btn-light btn-block" href="<?= URLROOT ?>/users/register">No account? login</a>
+				  		<a class="btn btn-light btn-block" href="<?= URLROOT ?>/users/login">Have an account? login</a>
 				  	</div>
 				  </div>
 			</form>

@@ -23,7 +23,7 @@
 						<button type="submit" class="btn btn-success btn-block">Login</button>  
 				  	</div>
 				  	<div class="col"> 
-				  		<a class="btn btn-light btn-block" href="<?= URLROOT ?>/users/login">Login</a> 
+				  		<a class="btn btn-light btn-block" href="<?= URLROOT ?>/users/register">No account? register</a> 
 				  	</div>
 				  </div>
 			</form>
