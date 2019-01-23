@@ -3,13 +3,16 @@
 <div class="col-lg-6 mx-auto">
 	<div class="card" style="width: 30rem;">
 		 <div class="card-body">
-		    <h5 class="card-title">User Login</h5>   
+		    <h5 class="card-title">User Login</h5>     
+			<!-- flash message -->
+		    <?php flash('register_success'); ?>  
+
 			<form action="<?= URLROOT ?>/users/login" method="post">  
 
 				  <div class="form-group"> 
 				    <label for="email">Email address <span class="text-danger">*</span></label>
 				    <input type="text" name="email" class="form-control <?php echo (!empty($data['email_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['email'] ?>"> 
-				    <small class="invalid-feedback"><?= $data['email_error'] ?></small>   
+				    <small class="invalid-feedback"><?= $data['email_error'] ?></small>    
 				  </div>
 
 				  <div class="form-group">
