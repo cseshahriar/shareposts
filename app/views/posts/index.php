@@ -2,6 +2,7 @@
 <div class="row">
 	<div class="col-lg-6">
 		<h1>Posts</h1>
+		<?= flash('post_created') ?>
 	</div>
 	<div class="col-lg-6">
 		<a href="<?= URLROOT ?>/posts/create" class="btn btn-primary float-right">
@@ -10,7 +11,7 @@
 		</a>
 	</div>
 </div>
-<?php foreach ($data['posts'] as $post) : ?>
+<?php foreach ($data['posts'] as $post) : ?> 
 	<div class="card card-body mb-3">
 		<h4 class="card-title"><?= $post->title ?></h4> 
 		<div class="bg-light p-2 mb3">
