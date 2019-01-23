@@ -47,5 +47,25 @@ class User extends Database
 		}
 	}
 
+	/**
+	 * [login description]
+	 * @param  [string] $email    [description]
+	 * @param  [string] $password [description]
+	 * @return [true/false]           [description]
+	 */
+	public function login($email, $password)
+	{
+		$this->db->query('SELECT * FROM users WHERE email = :email'); 
+		$this->db->bind(':email', $email);
+		$row = $this->db->single();
+
+		$hashPasswordd = $row->password; 
+		if (password_verify($password, $hashPasswordd)) {
+			return $row;
+		} else {
+			return false;  
+		}
+	}
+
 
 }

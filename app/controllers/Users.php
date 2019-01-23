@@ -114,6 +114,7 @@ class Users extends Controller
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			# process form 
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); 
+
 			// init data 
 			$data = [
 				'email' => trim($_POST['email']), 
@@ -126,9 +127,19 @@ class Users extends Controller
 			// validate email 
 			if (empty($data['email'])) {
 				$data['email_error'] = 'Email is required.';
-			} elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-				$data['email_error'] = 'Invalid Email Address.'; 
+			} else {
+				if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+					$data['email_error'] = 'Invalid Email Address.'; 
+				} 
+
+				// check for user/email exists 
+				if ($this->userModel->findUserByEmail($data['email'])) {
+					// user found
+				} else {
+					$data['email_error'] = 'User not found!'; 
+				}
 			}
+
 
 			//validate password 
 			if (empty($data['password'])) {
@@ -140,7 +151,17 @@ class Users extends Controller
 			// Makes sure errors are empty 
 			if (empty($data['email_error']) && empty($data['password_error'])) {
 				// validated 
-				
+				// check and set logged in user
+				$loggedInUser = $this->userModel->login($data['email'], $data['password']); 
+				if ($loggedInUser) {
+					
+					// create session
+					$this->createUserSession($loggedInUser);
+
+				} else {
+					$data['password_error'] = 'Incorrect password!';
+					$this->view('users/login', $data);  
+				}
 			} else {
 				// load view with errors 
 				$this->view('users/login', $data);  
@@ -159,4 +180,41 @@ class Users extends Controller
 			$this->view('users/login', $data);   
 		}
 	}
-}
+
+	/**
+	 * [createUserSession description]
+	 * @param  [type] $user [description]
+	 * @return [type]       [description]
+	 */
+	public function createUserSession($user)
+	{
+		$_SESSION['user_id'] = $user->id;
+		$_SESSION['user_name'] = $user->name;
+		$_SESSION['user_email'] = $user->email;
+
+		flash('login_success', 'Welcome, you are successfuly logged in.');   
+		redirect('pages/index');    
+	}
+
+
+	public function logout()  
+	{
+		unset($_SESSION['user_id']);
+		unset($_SESSION['user_name']);
+		unset($_SESSION['user_email']);
+		session_destroy();
+
+		flash('logout_success', 'You are now logged out.');
+		redirect('users/login');   
+	}
+
+	public function isLoggedIn() 
+	{
+		if (isset($_SESSION['user_id'])) {
+			return true;
+		} else {
+			return false;   
+		}
+	}   
+
+} // end of the class 

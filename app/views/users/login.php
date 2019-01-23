@@ -6,6 +6,7 @@
 		    <h5 class="card-title">User Login</h5>     
 			<!-- flash message -->
 		    <?php flash('register_success'); ?>  
+		    <?php flash('logout_success'); ?>   
 
 			<form action="<?= URLROOT ?>/users/login" method="post">  
 
@@ -17,7 +18,7 @@
 
 				  <div class="form-group">
 				    <label for="password">Password <span class="text-danger">*</span></label>
-				     <input type="text" name="password" class="form-control <?php echo (!empty($data['password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['password'] ?>"> 
+				     <input type="password" name="password" class="form-control <?php echo (!empty($data['password_error'])) ? 'is-invalid' : ''; ?>" placeholder="Email" value="<?= $data['password'] ?>"> 
 				    <small class="invalid-feedback"><?= $data['password_error'] ?></small>  
 				  </div>
 
