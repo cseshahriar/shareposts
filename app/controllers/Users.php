@@ -193,7 +193,7 @@ class Users extends Controller
 		$_SESSION['user_email'] = $user->email;
 
 		flash('login_success', 'Welcome, you are successfuly logged in.');   
-		redirect('pages/index');    
+		redirect('posts/index');     
 	}
 
 
