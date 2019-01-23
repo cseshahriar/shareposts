@@ -10,6 +10,11 @@ class Users extends Controller
 		$this->userModel = $this->model('User');
 	}
 
+	public function index()
+	{
+
+	}
+
 	public function register()
 	{
 		// Check for POST
@@ -50,8 +55,6 @@ class Users extends Controller
 				} 
 			}
 
-			
-
 			//validate password 
 			if (empty($data['password'])) {
 				$data['password_error'] = 'Password is required.';
@@ -70,11 +73,19 @@ class Users extends Controller
  
 			// Makes sure errors are empty 
 			if ( empty($data['name_error']) && empty($data['email_error']) && empty($data['password_error']) && empty($data['confirm_password_error'])) {
-				// validated 
-				
+		
+				// Hash Password 
+				$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT); 
+
+				// Register User
+				if($this->userModel->register($data)) { // receive true/false 
+					redirect('users/login');      
+				} else {
+					die('Something went wrong!');
+				} 
 			} else {
 				// load view with errors 
-				$this->view('users/register', $data); 
+				$this->view('users/register', $data);  
 			}
 
 
