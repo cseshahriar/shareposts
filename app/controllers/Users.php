@@ -1,12 +1,13 @@
 <?php 
 /**
- * 
+ * User Controller
  */
-class Users extends Controller
+class Users extends Controller 
 {
 	
 	function __construct()
 	{
+		$this->userModel = $this->model('User');
 	}
 
 	public function register()
@@ -34,12 +35,22 @@ class Users extends Controller
 			if (empty($data['name'])) {
 				$data['name_error'] = 'Name is required.';
 			}  
+
 			// validate email 
 			if (empty($data['email'])) {
 				$data['email_error'] = 'Email is required.';
-			} elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-				$data['email_error'] = 'Invalid Email Address.'; 
+			} else {
+				// valid email address 
+				if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+					$data['email_error'] = 'Invalid Email Address.'; 
+				}
+				// already exist 
+				if ($this->userModel->findUserByEmail($data['email'])) {
+					$data['email_error'] = 'Email is aready taken.';
+				} 
 			}
+
+			
 
 			//validate password 
 			if (empty($data['password'])) {

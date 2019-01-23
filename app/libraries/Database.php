@@ -51,10 +51,6 @@ class Database
 				case is_null($value):
 					$type = PDO::PARAM_NULL;   
 					break;
-				case is_date($value):
-					$type = PDO::PARAM_NULL;     
-					break;
-				
 				default:
 					$type = PDO::PARAM_STR;   
 			}
