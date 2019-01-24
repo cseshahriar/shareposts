@@ -39,7 +39,22 @@ class Post extends Database
 		return $result;  
 	} 
 
-	public function create($data)
+	public function store($data)
+	{
+		$this->db->query('UPDATE posts SET title=:title, body=:body WHERE id=:id');
+		//Bidn 
+		$this->db->bind(':id', $_SESSION['id']);
+		$this->db->bind(':title', $data['title']); 
+		$this->db->bind(':body', $data['body']);
+
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false; 
+		}
+	}
+
+	public function update($data)
 	{
 		$this->db->query('INSERT INTO posts(title, user_id,body) VALUES(:title, :user_id, :body)');
 		//Bidn 
