@@ -141,4 +141,18 @@ class Posts extends Controller
 			$this->view('posts/edit',$data); 
 		}
 	}
+
+	public function delete($id)
+	{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			if ($this->postModel->destroy($id)) {
+				flash('post_delete_message', 'Post removed');
+				redirect('posts');    
+			} else {
+				die('Something went wrong');
+			}
+		} else {
+			redirect('posts');   
+		}
+	}
 }

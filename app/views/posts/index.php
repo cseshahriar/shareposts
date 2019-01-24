@@ -3,6 +3,7 @@
 	<div class="col-lg-6">
 		<h1>Posts</h1>
 		<?= flash('post_created') ?>
+		<?= flash('post_delete_message') ?>  
 	</div>
 	<div class="col-lg-6">
 		<a href="<?= URLROOT ?>/posts/create" class="btn btn-primary float-right">

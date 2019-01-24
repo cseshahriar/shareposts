@@ -13,9 +13,9 @@
 			<hr>
 			<a href="<?= URLROOT ?>/posts/edit/<?= $data['post']->id?>" class="btn btn-info sm d-inline-block" style="width: 80px;">Edit</a>
 			<br>
-			<form action="<?= URLROOT?>/post/delete/<?= $data['post']->id?>" method="post" style="display: inline-block;">
-				<button class="btn btn-warning" type="submit">Delete</button>
+			<form action="<?= URLROOT?>/posts/delete/<?= $data['post']->id?>" method="post" style="display: inline-block;"> 
+				<button class="btn btn-warning" type="submit">Delete</button> 
 			</form>
 		<?php endif; ?>  
 	</div>
-<?php require_once APPROOT.'/views/inc/footer.php'; ?>     
+<?php require_once APPROOT.'/views/inc/footer.php'; ?>      
