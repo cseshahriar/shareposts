@@ -19,7 +19,7 @@
 		</div>
 		<p class="card-text">
 			<?= $post->body ?>
-			<a class="btn btn-sm btn-info" href="<?= RULROOT ?>/posts/show/<?= $post->postId ?>">Read More[...]</a> 
+			<a class="btn btn-sm btn-info" href="<?= URLROOT ?>/posts/show/<?= $post->postId ?>">Read More[...]</a> 
 		</p>
 	</div>
 <?php endforeach; ?>

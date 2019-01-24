@@ -5,18 +5,19 @@
 class Posts extends Controller
 {
 	
-	function __construct()
+	public function __construct()  
 	{
 		if (!isLoggedIn()) {
 			redirect('users/login');   
 		}
 
 		$this->postModel = $this->model('Post'); // post model load 
+		$this->userModel = $this->model('User'); // post model load   
 	}
 
 	public function index()
 	{
-		$posts = $this->postModel->getPost();
+		$posts = $this->postModel->getPost();  
 		$data = [
 			'posts' => $posts
 		];
@@ -64,5 +65,16 @@ class Posts extends Controller
 			];
 			$this->view('posts/create',$data); 
 		}
+	}
+
+	public function show($id) 
+	{
+		$post = $this->postModel->getPostById($id);  
+		$user = $this->userModel->getUserById($post->user_id);     
+		$data = [
+			'post' => $post,
+			'user' => $user
+		];
+		$this->view('posts/show', $data);     
 	}
 }

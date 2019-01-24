@@ -5,16 +5,16 @@
 class Post extends Database
 {
 	private $db; 
-	function __construct()
+	public function __construct() 
 	{
 		$this->db = new Database; 
-	}
+	} 
 
 	/**
 	 * [getPost description]
 	 * @return [type] [description] 
 	 */
-	public function getPost() 
+	public function getPost()  
 	{
 		$this->db->query("SELECT *, posts.id as postId, users.id as userId, posts.created_at as pcreated_at
 						FROM posts
@@ -23,6 +23,19 @@ class Post extends Database
 						ORDER BY posts.created_at DESC"   
 					);
 		$result = $this->db->resultSet();
+		return $result;  
+	} 
+
+	/**
+	 * [getPostById description]
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public function getPostById($id) 
+	{
+		$this->db->query("SELECT * FROM posts WHERE id=:id");
+		$this->db->bind(':id', $id);
+		$result = $this->db->single();   
 		return $result;  
 	} 
 

@@ -6,7 +6,7 @@ class User extends Database
 {
 	private $db;
 	
-	function __construct() 
+	public function __construct() 
 	{
 		$this->db = new Database; 
 	}
@@ -65,6 +65,19 @@ class User extends Database
 		} else {
 			return false;  
 		}
+	}
+
+	/**
+	 * [getUserById description]
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */ 
+	public function getUserById($id)
+	{
+		$this->db->query('SELECT * FROM users WHERE id = :id'); 
+		$this->db->bind(':id', $id);
+		$row = $this->db->single(); 
+		return $row; 	 
 	}
 
 
